@@ -53,5 +53,7 @@ body {
     background: rgb(202, 60, 60); /* this is a maroon */
     color: white;
 }
-p { float: right; margin-bottom: -5px; }
-p a { font-size: 12px; color: #cccccc; text-decoration: none; }
+p { width: 97%; margin-bottom: -5px; }
+p a { font-size: 12px; color: #cccccc; text-decoration: none; float: right; }
+p a:first-child {float: left;}
+#presets { width: 97%; }

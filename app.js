@@ -4,7 +4,45 @@
 ;var labyrinth = (function(win, doc, $) {
     var config = {
         stop: true,
-        chars: ['\\', '/']
+        chars: ['\\', '/'],
+
+        presets: {
+            c64: {
+                color: '#0FF',
+                backgroundColor: '#08C',
+                textShadow: 'none'
+            },
+            monokai: {
+                color: '#F8F8F2',
+                backgroundColor: '#272822',
+                textShadow: 'none'
+            },
+            cobalt: {
+                color: '#FFF',
+                backgroundColor: '#002240',
+                textShadow: 'none'
+            },
+            halloween: {
+                color: '#FFB84E',
+                backgroundColor: '#03111D',
+                textShadow: 'none'
+            },
+            eldorado: {
+                color: '#4A3C03',
+                backgroundColor: '#FFE033',
+                textShadow: '0.05em 0.01em 0.1em #5D5110'
+            },
+            shadow: {
+                color: '#0FF',
+                backgroundColor: '#08C',
+                textShadow: '0.09em 0.04em #005D5D'
+            },
+            busy: {
+                color: '#0FF',
+                backgroundColor: '#08C',
+                textShadow: '0.1em 0.1em 0.1em rgb(0, 93, 93), -0.2em 0.8em rgb(0, 155, 93), 0 1.1em 0.1em rgb(0, 44, 44)'
+            }
+        }
     };
 
     var el = {
@@ -26,7 +64,8 @@
             style: {
                 fontSize: $('#fontSize'),
                 fontColour: $('#fontColour'),
-                bgColour: $('#bgColour')
+                bgColour: $('#bgColour'),
+                presets: $('#presets')
             }
         }
     };
@@ -93,6 +132,16 @@
                 $('body').style.backgroundColor = el.render.style.bgColour.value;
                 el.view.style.backgroundColor = el.render.style.bgColour.value;
                 el.render.style.bgColour.style.backgroundColor = el.render.style.bgColour.value;
+            },
+            changePreset: function() {
+                var preset = config.presets[el.render.style.presets.value];
+                for (var prop in preset) {
+                    el.view.style[prop] = preset[prop];
+                }
+                el.render.style.fontColour.value = preset.color;
+                el.render.style.bgColour.value =  preset.backgroundColor;
+                actions.style.changeFontColour();
+                actions.style.changeBgColour();
             }
         }
     };
@@ -106,6 +155,8 @@
         el.render.style.fontSize.onchange = actions.style.changeFontSize;
         el.render.style.fontColour.onkeyup = actions.style.changeFontColour;
         el.render.style.bgColour.onkeyup = actions.style.changeBgColour;
+
+        el.render.style.presets.onchange = actions.style.changePreset;
     };
 
     return {
