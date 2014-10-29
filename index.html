@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+    <link rel="stylesheet" href="pure-min.css">
     <link rel="stylesheet" href="style.css"/>
     <title>C64 Labyrinth in JavaScript</title>
 </head>
@@ -22,12 +22,20 @@
             <label for="renderChars" class="pure-radio"><input id="renderChars" name="render" type="radio" checked/>Single Character (C64 Style!)</label>
             <label for="renderLines" class="pure-radio"><input id="renderLines" name="render" type="radio" />Line at a Time</label>
             <label for="renderScreens" class="pure-radio"><input id="renderScreens" name="render" type="radio"/>Screen at a Time</label>
-            </fieldset>
+        </fieldset>
         <fieldset class="button-group">
-            <button id="start" class="pure-button pure-button-primary">Start</button>
-            <button id="stop" class="pure-button" disabled>Stop</button>
-            <button id="clear" class="pure-button">Clear</button>
-            </fieldset>
+            <button id="start" class="button-success pure-button">Start</button>
+            <button id="stop" class="button-error pure-button" disabled>Stop</button>
+            <button id="clear" class="pure-button pure-button-primary">Clear</button>
+        </fieldset>
+        <fieldset class="render-styles">
+            <legend>Render Style</legend>
+            <label for="fontSize">Font Size (em): <input id="fontSize" type="range" min="0.4" max="15" value="5"/></label>
+            <label for="fontColour">Font Colour: <input id="fontColour" type="input" value="#0FF"/></label>
+            <label for="bgColour">Bg Colour: <input id="bgColour" type="input" value="#08C"/></label>
+        </fieldset>
+        <br/><p> <a href="http://twitter.com/brian3kb">Brian Barnett</a> </p>
+
     </div>
 
 </div>

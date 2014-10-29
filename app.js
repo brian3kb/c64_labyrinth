@@ -22,19 +22,25 @@
                 start: $('#start'),
                 stop: $('#stop'),
                 clear: $('#clear')
+            },
+            style: {
+                fontSize: $('#fontSize'),
+                fontColour: $('#fontColour'),
+                bgColour: $('#bgColour')
             }
         }
     };
 
-    var getLineSize = function() {
+    var getLineSizeInChars = function() {
         var char = win.getComputedStyle(el.view, null).getPropertyValue('font-size').split('px')[0],
-            width = el.view.offsetWidth;
+            width = win.innerWidth;
         return width / char;
     };
 
-    var getLinesToFillScreen = function() {
-        var height = win.innerHeight;
-        return height / getLineSize();
+    var getCharsToFillScreen = function() {
+        var char = win.getComputedStyle(el.view, null).getPropertyValue('font-size').split('px')[0],
+            height = win.innerHeight;
+        return (height / char) * getLineSizeInChars();
     };
 
     var tick = function() {
@@ -44,8 +50,8 @@
             },
             batch = '';
         if(el.render.by.char.checked) batch = getBatch(1);
-        if(el.render.by.line.checked) batch = getBatch(getLineSize());
-        if(el.render.by.screen.checked) batch = getBatch(getLinesToFillScreen());
+        if(el.render.by.line.checked) batch = getBatch(getLineSizeInChars());
+        if(el.render.by.screen.checked) batch = getBatch(getCharsToFillScreen());
 
         el.view.innerHTML += batch;
         win.scrollTo(0, el.view.scrollHeight);
@@ -74,6 +80,20 @@
         },
         toggleInfiniteRendering: function() {
             el.render.count.disabled = !el.render.count.disabled;
+        },
+        style: {
+            changeFontSize: function() {
+                el.view.style.fontSize = el.render.style.fontSize.value + 'em';
+            },
+            changeFontColour: function() {
+                el.view.style.color = el.render.style.fontColour.value;
+                el.render.style.fontColour.style.backgroundColor = el.render.style.fontColour.value;
+            },
+            changeBgColour: function() {
+                $('body').style.backgroundColor = el.render.style.bgColour.value;
+                el.view.style.backgroundColor = el.render.style.bgColour.value;
+                el.render.style.bgColour.style.backgroundColor = el.render.style.bgColour.value;
+            }
         }
     };
 
@@ -82,6 +102,10 @@
         el.render.buttons.stop.onclick = actions.stop;
         el.render.buttons.clear.onclick = actions.clear;
         el.render.infinite.onclick = actions.toggleInfiniteRendering;
+
+        el.render.style.fontSize.onchange = actions.style.changeFontSize;
+        el.render.style.fontColour.onkeyup = actions.style.changeFontColour;
+        el.render.style.bgColour.onkeyup = actions.style.changeBgColour;
     };
 
     return {

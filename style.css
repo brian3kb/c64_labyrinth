@@ -13,7 +13,7 @@ body {
     line-height: 0.73em;
     transform: scaleX(2);
     background-color: #08C;
-    color: #0FF;;
+    color: #0FF;
     font-weight: 800;
     overflow: hidden;
     word-break: break-all;
@@ -26,10 +26,32 @@ body {
     line-height: 0.9em;
     font-size: 14px;
     padding: 15px 10px 15px 25px;
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255,255,255,0.4);
     border-bottom-left-radius: 10px;
     color: #0D0C0C;
 }
 .button-group button { width: 30%; }
 #count {  width: 52%; float: left; height: 2.2em;  }
 #infinite, [id^=render] { width: 20%; float: left; }
+.render-styles input {
+    margin: -5px 0 0 15px;
+    width: 52%;
+    float: right;
+}
+.render-styles label {
+    float: left;
+    width: 95%;
+    text-align: right;
+}
+#fontColour { background-color: #0FF; }
+#bgColour { background-color: #08C; }
+.button-success {
+    background: rgb(28, 184, 65); /* this is a green */
+    color: white;
+}
+.button-error {
+    background: rgb(202, 60, 60); /* this is a maroon */
+    color: white;
+}
+p { float: right; margin-bottom: -5px; }
+p a { font-size: 12px; color: #cccccc; text-decoration: none; }
