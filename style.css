@@ -18,3 +18,18 @@ body {
     overflow: hidden;
     word-break: break-all;
 }
+.control-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    line-height: 0.9em;
+    font-size: 14px;
+    padding: 15px 10px 15px 25px;
+    background-color: rgba(255,255,255,0.1);
+    border-bottom-left-radius: 10px;
+    color: #0D0C0C;
+}
+.button-group button { width: 30%; }
+#count {  width: 52%; float: left; height: 2.2em;  }
+#infinite, [id^=render] { width: 20%; float: left; }

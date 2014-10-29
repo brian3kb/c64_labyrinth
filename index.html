@@ -2,11 +2,35 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
     <link rel="stylesheet" href="style.css"/>
     <title>C64 Labyrinth in JavaScript</title>
 </head>
 <body>
 <div class="view"></div>
+<div class="control-panel">
+    <h2>C64 Style Labyrinth</h2>
+
+    <div class="pure-form">
+        <fieldset>
+            <legend>Character's to Render?</legend>
+            <input id="count" type="number" value="5000" min="1000"/>
+            <label for="infinite" class="pure-checkbox"><input id="infinite" type="checkbox"/> Infinite?</label>
+        </fieldset>
+        <fieldset>
+            <legend>Render Batch Size</legend>
+            <label for="renderChars" class="pure-radio"><input id="renderChars" name="render" type="radio" checked/>Single Character (C64 Style!)</label>
+            <label for="renderLines" class="pure-radio"><input id="renderLines" name="render" type="radio" />Line at a Time</label>
+            <label for="renderScreens" class="pure-radio"><input id="renderScreens" name="render" type="radio"/>Screen at a Time</label>
+            </fieldset>
+        <fieldset class="button-group">
+            <button id="start" class="pure-button pure-button-primary">Start</button>
+            <button id="stop" class="pure-button" disabled>Stop</button>
+            <button id="clear" class="pure-button">Clear</button>
+            </fieldset>
+    </div>
+
+</div>
 
 </body>
 <script src="app.js"></script>
