@@ -6,11 +6,36 @@
         stop: true,
         chars: ['\\', '/'],
 
+        typefaces: {
+            courierNew: {
+                fontFamily: '"Courier New", Monospace',
+                letterSpacing: '-0.26em',
+                lineHeight: '0.73em',
+                transform: 'scaleX(2)',
+                width: '70%',
+                fontWeight: '800'
+            },
+            c64: {
+                fontFamily: 'commodore',
+                letterSpacing: '-0.26em',
+                lineHeight: '0.7em',
+                transform: 'scaleX(1)',
+                width: '103%',
+                fontWeight: '400'
+            }
+        },
+
         presets: {
             c64: {
                 color: '#0FF',
                 backgroundColor: '#08C',
                 textShadow: 'none'
+            },
+            c64retro: {
+                color: '#0FF',
+                backgroundColor: '#08C',
+                textShadow: 'none',
+                typeface: 'c64'
             },
             monokai: {
                 color: '#F8F8F2',
@@ -62,6 +87,7 @@
                 clear: $('#clear')
             },
             style: {
+                typeface: $('#typeface'),
                 fontSize: $('#fontSize'),
                 fontColour: $('#fontColour'),
                 bgColour: $('#bgColour'),
@@ -121,6 +147,12 @@
             el.render.count.disabled = !el.render.count.disabled;
         },
         style: {
+            changeTypeFace: function() {
+                var typeface = config.typefaces[el.render.style.typeface.value];
+                for (var prop in typeface){
+                    el.view.style[prop] = typeface[prop];
+                }
+            },
             changeFontSize: function() {
                 el.view.style.fontSize = el.render.style.fontSize.value + 'em';
             },
@@ -140,6 +172,10 @@
                 }
                 el.render.style.fontColour.value = preset.color;
                 el.render.style.bgColour.value =  preset.backgroundColor;
+
+                el.render.style.typeface.value = preset.typeface || 'courierNew';
+                actions.style.changeTypeFace();
+
                 actions.style.changeFontColour();
                 actions.style.changeBgColour();
             }
@@ -152,6 +188,7 @@
         el.render.buttons.clear.onclick = actions.clear;
         el.render.infinite.onclick = actions.toggleInfiniteRendering;
 
+        el.render.style.typeface.onchange = actions.style.changeTypeFace;
         el.render.style.fontSize.onchange = actions.style.changeFontSize;
         el.render.style.fontColour.onkeyup = actions.style.changeFontColour;
         el.render.style.bgColour.onkeyup = actions.style.changeBgColour;

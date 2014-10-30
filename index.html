@@ -2,13 +2,17 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="JavaScript take on the one line C64 program to print a random labyrinth.">
+    <meta name="author" content="Brian Barnett (@brian3kb)">
+    <!--<link href='http://fonts.googleapis.com/css?family=Cousine:700' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="pure-min.css">
     <link rel="stylesheet" href="style.css"/>
     <title>C64 Labyrinth in JavaScript</title>
 </head>
 <body>
-<div class="view"></div>
-<div class="control-panel">
+<div class="view noselect"></div>
+<div class="control-panel noselect">
     <h2>C64 Style Labyrinth</h2>
 
     <div class="pure-form">
@@ -30,6 +34,10 @@
         </fieldset>
         <fieldset class="render-styles">
             <legend>Render Style</legend>
+            <select id="typeface">
+                <option value="courierNew">Courier New</option>
+                <option value="c64">C64 Style</option>
+            </select>
             <label for="fontSize">Font Size (em): <input id="fontSize" type="range" min="0.4" max="15" value="5"/></label>
             <label for="fontColour">Font Colour: <input id="fontColour" type="input" value="#0FF"/></label>
             <label for="bgColour">Bg Colour: <input id="bgColour" type="input" value="#08C"/></label>
@@ -38,6 +46,7 @@
             <legend>Pre-sets</legend>
             <select id="presets">
                 <option value="c64">C64</option>
+                <option value="c64retro">C64 Retro</option>
                 <option value="monokai">Monokai</option>
                 <option value="cobalt">Cobalt</option>
                 <option value="halloween">Halloween</option>
