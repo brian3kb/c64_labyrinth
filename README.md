@@ -2,7 +2,7 @@
 My take on the classic Commodore 64 one-liner (10 PRINT CHR$(205.5+RND(1)); : GOTO 10) to create a random labyrinth pattern on the screen. 
 Inspiration from the 10 PRINT book available under CC -> http://10print.org/
 
-## Just have a mess with the controls and hit the start button, there are a few presets to choose from giving different styles
+Just have a mess with the controls and hit the start button, there are a few presets to choose from giving different styles
 
 ![Demo gif](/demo.gif?raw=true)
 
