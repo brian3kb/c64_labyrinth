@@ -1,3 +1,81 @@
+/*Pure CSS styles*/
+.pure-button {
+    /* Structure */
+    display: inline-block;
+    zoom: 1;
+    line-height: normal;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 100%;
+    padding: 0.5em 1em;
+    color: #444; /* rgba not supported (IE 8) */
+    color: rgba(0, 0, 0, 0.80); /* rgba supported */
+    border: 1px solid #999;  /*IE 6/7/8*/
+    border: none rgba(0, 0, 0, 0);  /*IE9 + everything else*/
+    background-color: #E6E6E6;
+    text-decoration: none;
+    border-radius: 2px;
+}
+
+/* Firefox: Get rid of the inner focus border */
+.pure-button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+.pure-form input[type="text"],
+.pure-form input[type="number"],
+.pure-form input[type="color"],
+.pure-form select,
+.pure-form textarea {
+    padding: 0.5em 0.6em;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    border-radius: 4px;
+    vertical-align: middle;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.pure-form fieldset {
+    margin: 0;
+    padding: 0.35em 0 0.75em;
+    border: 0;
+}
+.pure-form legend {
+    display: block;
+    width: 100%;
+    padding: 0.3em 0;
+    margin-bottom: 0.3em;
+    color: #333;
+    border-bottom: 1px solid #e5e5e5;
+}
+.pure-form input[type="radio"]:focus,
+.pure-form input[type="checkbox"]:focus {
+    outline: thin solid #129FEA;
+    outline: 1px auto #129FEA;
+}
+.pure-form input[type="radio"],
+.pure-form input[type="checkbox"] {
+    margin-right: -0.5em;
+}
+.pure-form .pure-checkbox,
+.pure-form .pure-radio {
+    margin: 0.5em 0;
+    display: block;
+}
+
 @font-face {
     font-family: commodore;
     src: url(fonts/c64style/C64_Pro_Mono-STYLE.woff);
@@ -7,6 +85,7 @@ body {
     margin: 0;
     background-color: #08C;
     overflow: hidden;
+    font-family: FreeSans, Arimo, "Droid Sans", Helvetica, Arial, sans-serif;
 }
 .noselect {
     -webkit-touch-callout: none;
@@ -30,25 +109,40 @@ body {
     color: #0FF;
     font-weight: 800;
     overflow: hidden;
-    word-break: break-all;
+    word-break: break-word;
     margin-left: -1%;
+    cursor: default;
 }
-.control-panel {
+.control-panel, #toggleCP {
     position: fixed;
     top: 0;
     right: 0;
     width: 280px;
     line-height: 0.9em;
-    font-size: 14px;
-    padding: 15px 10px 15px 25px;
+    font-size: 12px;
+    padding: 5px 5px 5px 15px;
     background-color: rgba(255,255,255,0.4);
     border-bottom-left-radius: 10px;
     color: #0D0C0C;
     z-index: 10;
+    display: block;
+}
+#toggleCP {
+    font-size: 16px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    font-weight: bolder;
+    padding: 5px 5px 5px 8px;
+}
+#toggleCP, #headerText { cursor: pointer; }
+.control-panel-collapsed {
+    display: none;
 }
 .button-group button { width: 30%; }
 #count {  width: 52%; float: left; height: 2.2em;  }
-#infinite, [id^=render] { width: 20%; float: left; }
+#infinite, [id^=render] { width: 20%; float: left;  margin-top: -2px; }
 .render-styles input {
     margin: -5px 0 0 15px;
     width: 52%;
@@ -58,15 +152,16 @@ body {
     float: left;
     width: 95%;
     text-align: right;
+    margin: 0.5em 0 0.5em -1.5em;
 }
 #fontColour { background-color: #0FF; }
 #bgColour { background-color: #08C; }
 .button-success {
-    background: rgb(28, 184, 65); /* this is a green */
+    background: rgb(28, 184, 65);
     color: white;
 }
 .button-error {
-    background: rgb(202, 60, 60); /* this is a maroon */
+    background: rgb(202, 60, 60);
     color: white;
 }
 p { width: 97%; margin-bottom: -5px; }

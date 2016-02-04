@@ -1,5 +1,5 @@
 /**
- * Created by Brian on 28/10/2014.
+ * Created by Brian Barnett - @brian3kb
  */
 ;var labyrinth = (function(win, doc, $) {
     var config = {
@@ -74,6 +74,9 @@
         view: $('.view'),
 
         render: {
+            controlPanel: $('#controlPanel'),
+            headerText: $('#headerText'),
+            toggleCP: $('#toggleCP'),
             count: $('#count'),
             infinite: $('#infinite'),
             by: {
@@ -108,6 +111,14 @@
         return (height / char) * getLineSizeInChars();
     };
 
+    var getInverseColour = function(col) {
+        if (col[0] === '#') col = col.substring(1);
+        var colLength = col.length;
+        col = (0xFFFFFF ^ (parseInt(col, 16))).toString(16);
+        col = ("000000" + col).slice(-colLength);
+        return "#" + col;
+    };
+
     var tick = function() {
         var getBatch = function(count) {
                 for (var a = [], i = 0; i < count; ++i ) a[i]=config.chars[Math.round(Math.random())];
@@ -132,6 +143,7 @@
             el.render.buttons.clear.disabled  = true;
             config.stop = false;
             win.requestAnimationFrame(tick);
+            actions.toggleControlPanel();
         },
         stop: function() {
             el.render.buttons.start.disabled = false;
@@ -146,6 +158,15 @@
         toggleInfiniteRendering: function() {
             el.render.count.disabled = !el.render.count.disabled;
         },
+        toggleControlPanel: function() {
+            if (el.render.toggleCP.style.display === 'none') {
+                el.render.toggleCP.style.display = 'block';
+                el.render.controlPanel.style.display = 'none';    
+            } else {
+                el.render.toggleCP.style.display = 'none';
+                el.render.controlPanel.style.display = 'block';       
+            }
+        },
         style: {
             changeTypeFace: function() {
                 var typeface = config.typefaces[el.render.style.typeface.value];
@@ -159,11 +180,13 @@
             changeFontColour: function() {
                 el.view.style.color = el.render.style.fontColour.value;
                 el.render.style.fontColour.style.backgroundColor = el.render.style.fontColour.value;
+                el.render.style.fontColour.style.color = getInverseColour(el.render.style.fontColour.value);
             },
             changeBgColour: function() {
                 $('body').style.backgroundColor = el.render.style.bgColour.value;
                 el.view.style.backgroundColor = el.render.style.bgColour.value;
                 el.render.style.bgColour.style.backgroundColor = el.render.style.bgColour.value;
+                el.render.style.bgColour.style.color = getInverseColour(el.render.style.bgColour.value);
             },
             changePreset: function() {
                 var preset = config.presets[el.render.style.presets.value];
@@ -187,6 +210,8 @@
         el.render.buttons.stop.onclick = actions.stop;
         el.render.buttons.clear.onclick = actions.clear;
         el.render.infinite.onclick = actions.toggleInfiniteRendering;
+        el.render.toggleCP.onclick = actions.toggleControlPanel;
+        el.render.headerText.onclick = actions.toggleControlPanel;
 
         el.render.style.typeface.onchange = actions.style.changeTypeFace;
         el.render.style.fontSize.onchange = actions.style.changeFontSize;
