@@ -7,3 +7,5 @@ Just have a mess with the controls and hit the start button, there are a few pre
 ![Demo gif](/demo.gif?raw=true)
 
 For the classic C64 look, the font from http://style64.org/c64-truetype/license has been used, license for its use is included in the fonts directory.
+
+Demo up on my Codepen profile: http://codepen.io/brian3kb/full/VeGqBQ/
